@@ -18,5 +18,5 @@
 <ul>
   <li>Install the requisite packages</li>
   <li>From command line, navigate to app folder then python run.py</li>
-  <li>Open a browser to localhost:3001</li>
+  <li>Open a browser to http://localhost:3001 or http://0.0.0.0:3001</li>
 </ul>
