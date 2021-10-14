@@ -25,7 +25,7 @@
 ```
 project
 |  app
-|__templates
+|--run.py
 
 |  data
 |  models
