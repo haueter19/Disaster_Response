@@ -20,3 +20,7 @@
   <li>From command line, navigate to app folder then python run.py</li>
   <li>Open a browser to http://localhost:3001 or http://0.0.0.0:3001</li>
 </ul>
+
+### Structure
+<ul>app
+  <li></li>
