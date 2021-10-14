@@ -23,8 +23,10 @@
 
 ### Structure
 ```
-+--app
-|   +--templates
+project
+|  app
+|  data
+|  models
 ```
 <li>go.html</li>
       <li>master.html</li>
