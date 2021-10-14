@@ -28,8 +28,13 @@
       <li>master.html</li>
   </ul>
   <li>run.py</li>
-  data
-  <li></li>
-  models
-  <li></li>
+</ul>
+<ul>data
+  <li>process_data.py</li>
+  <li>disaster_categories.csv</li>
+  <li>disaster_messages.csv</li>
+</ul>
+<ul>models
+  <li>classifier.pkl</li>
+  <li>train_classifier.pkl</li>
 </ul>
