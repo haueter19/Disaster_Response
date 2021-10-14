@@ -15,4 +15,8 @@
  </ul>
 
 ### How To
-
+<ul>
+  <li>Install the requisite packages</li>
+  <li>From command line, navigate to app folder then python run.py</li>
+  <li>Open a browser to localhost:3001</li>
+</ul>
