@@ -1,7 +1,8 @@
 # Disaster_Response
-### Udacity Data Science Nanodegree Program
+#### Udacity Data Science Nanodegree Program
 
-#### Purpose
+### Purpose
+To build a pipeline that trains a model from labeled data and situates in an app for direct use
 
 ### Prereqs
 <ul>
@@ -38,5 +39,3 @@ project
 |  |  train_classifier.pkl
 ```
 
-### Purpose
-To build a pipeline that trains a model from labeled data and situates in an app for direct use
