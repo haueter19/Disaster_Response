@@ -7,7 +7,7 @@ from nltk.tokenize import word_tokenize
 
 from flask import Flask
 from flask import render_template, request, jsonify
-from plotly.graph_objs import Bar
+from plotly.graph_objs import *
 #from sklearn.externals import joblib
 import joblib
 from sqlalchemy import create_engine
@@ -44,28 +44,45 @@ model = joblib.load("../models/classifier.pkl")
 def index():
     
     # extract data needed for visuals
-    # TODO: Below is an example - modify to extract data for your own visuals
-    genre_counts = df.groupby('genre').count()['message']
-    genre_names = list(genre_counts.index)
-    
+    viz = df.copy()
+    viz['token_count'] = viz['message'].apply(lambda x: len(tokenize(x)))
+    viz['bin'] = pd.cut(viz.token_count, bins=[0, 10, 25, 50, 100, 10000], labels=['<10', '10-24', '25-49', '50-99', '100+'])
+
     # create visuals
-    # TODO: Below is an example - modify to create your own visuals
     graphs = [
         {
             'data': [
                 Bar(
-                    x=genre_names,
-                    y=genre_counts
+                    x=viz.columns[4:-2],
+                    y=viz.iloc[:,4:-2].sum().sort_values(ascending=False)
                 )
             ],
 
             'layout': {
-                'title': 'Distribution of Message Genres',
+                'title': 'Count of Messages by Type',
                 'yaxis': {
                     'title': "Count"
                 },
                 'xaxis': {
-                    'title': "Genre"
+                    'title': "Message Type"
+                }
+            }
+        },
+        {
+            'data': [
+                Bar(
+                    x=viz.groupby('bin')['message'].count().index,
+                    y=viz.groupby('bin')['message'].count().values
+                )
+            ],
+
+            'layout': {
+                'title': 'Message Token Length by Bin',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Bin Range"
                 }
             }
         }
