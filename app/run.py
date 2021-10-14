@@ -16,6 +16,10 @@ from sqlalchemy import create_engine
 app = Flask(__name__)
 
 def tokenize(text):
+    """
+    INPUT: text string similar to a social media message
+    OUTPUT: list of lemmatized tokens
+    """
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
 
