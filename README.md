@@ -30,15 +30,10 @@ project
 |  |  |  go.html
 |  |  |  master.html
 |  data
+|  |  disaster_categories.csv
+|  |  disaster_messages.csv
+|  |  process_data.py
 |  models
+|  |  classifier.pkl
+|  |  train_classifier.pkl
 ```
-<ul>data
-  <li>process_data.py</li>
-  <li>disaster_categories.csv</li>
-  <li>disaster_messages.csv</li>
-</ul>
-<ul>models
-  <li>classifier.pkl</li>
-  <li>train_classifier.pkl</li>
-</ul>
-
