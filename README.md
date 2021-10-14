@@ -22,9 +22,11 @@
 </ul>
 
 ### Structure
-|+--app
+.
++--app
 |   +--templates
-      <li>go.html</li>
+
+<li>go.html</li>
       <li>master.html</li>
   </ul>
   <li>run.py</li>
