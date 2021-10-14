@@ -22,10 +22,10 @@
 </ul>
 
 ### Structure
-.
+```
 +--app
 |   +--templates
-
+```
 <li>go.html</li>
       <li>master.html</li>
   </ul>
@@ -40,3 +40,4 @@
   <li>classifier.pkl</li>
   <li>train_classifier.pkl</li>
 </ul>
+
