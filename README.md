@@ -30,10 +30,13 @@ project
 |  |  |  go.html
 |  |  |  master.html
 |  data
-|  |  disaster_categories.csv
-|  |  disaster_messages.csv
+|  |  disaster_categories.csv (labeled categories)
+|  |  disaster_messages.csv (message text and genre)
 |  |  process_data.py
 |  models
 |  |  classifier.pkl
 |  |  train_classifier.pkl
 ```
+
+### Purpose
+To build a pipeline that trains a model from labeled data and situates in an app for direct use
