@@ -22,8 +22,8 @@
 </ul>
 
 ### Structure
-<ul>app
-  <ul>templates
++--app
+|   +--templates
       <li>go.html</li>
       <li>master.html</li>
   </ul>
