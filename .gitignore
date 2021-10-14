@@ -1,3 +1,4 @@
 models/classifier.pkl
 data/DisasterResponse.db
 EDA.ipynb
+.ipynb_checkpoints
