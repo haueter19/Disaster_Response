@@ -24,3 +24,6 @@
 ### Structure
 <ul>app
   <li></li>
+  data
+  models
+</ul>
