@@ -22,7 +22,7 @@
 </ul>
 
 ### Structure
-+--app
+|+--app
 |   +--templates
       <li>go.html</li>
       <li>master.html</li>
