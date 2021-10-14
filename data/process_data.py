@@ -27,7 +27,7 @@ def clean_data(df):
 
 def save_data(df, database_filename):
     from sqlalchemy import create_engine
-    engine = create_engine('sqlite:///Disaster.db')
+    engine = create_engine('sqlite:///'+database_filename)
     df.to_sql('messages', engine, index=False)
 
 
@@ -55,7 +55,7 @@ def main():
               'well as the filepath of the database to save the cleaned data '\
               'to as the third argument. \n\nExample: python process_data.py '\
               'disaster_messages.csv disaster_categories.csv '\
-              'DisasterResponse.db')
+              'Disaster.db')
 
 
 if __name__ == '__main__':
