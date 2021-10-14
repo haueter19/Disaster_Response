@@ -25,16 +25,13 @@
 ```
 project
 |  app
-|--run.py
-
+|  |  run.py
+|  |  templates
+|  |  |  go.html
+|  |  |  master.html
 |  data
 |  models
 ```
-<li>go.html</li>
-      <li>master.html</li>
-  </ul>
-  <li>run.py</li>
-</ul>
 <ul>data
   <li>process_data.py</li>
   <li>disaster_categories.csv</li>
