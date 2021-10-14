@@ -25,6 +25,8 @@
 ```
 project
 |  app
+|__templates
+
 |  data
 |  models
 ```
