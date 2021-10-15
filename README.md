@@ -6,7 +6,7 @@ To build a pipeline that trains a model from labeled data and situates in an app
 
 ### Prereqs
 <ul>
-  <li>Python 3.7</li>
+  <li>Python 3.8.2</li>
   <li>Pandas</li>
   <li>Plotly</li>
   <li>Flask</li>
