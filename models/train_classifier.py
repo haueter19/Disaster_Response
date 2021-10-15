@@ -5,6 +5,9 @@ import nltk
 nltk.download(['punkt', 'wordnet', 'averaged_perceptron_tagger'])
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
+from nltk.corpus import stopwords
+stop_words = set(stopwords.words('english'))
+import re
 import pickle
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
@@ -26,16 +29,25 @@ def load_data(database_filepath):
 
 
 def tokenize(text):
+    """
+    INPUT: text string
+    OUTPUT: cleaned, tokenized, lemmatized list in lowercase with punctuation and stop words removed
+    """
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
 
     clean_tokens = []
-    for tok in tokens:
-        clean_tok = lemmatizer.lemmatize(tok).lower().strip()
-        clean_tokens.append(clean_tok)
+    for token in tokens:
+        clean_token = lemmatizer.lemmatize(token).lower().strip()
+        if re.match(r'[^\w]', clean_token)==None:
+            if clean_token not in stop_words:
+                clean_tokens.append(clean_token)
+            else:
+                pass
+        else:
+            pass
 
     return clean_tokens
-
 
 def build_model():
     pipeline = Pipeline(
@@ -46,9 +58,9 @@ def build_model():
         ]
     )
     parameters = {
-        'clf__estimator__n_estimators':[20, 70],
-        #'clf__estimator__min_samples_leaf':[2, 5, 7],
-        #'clf__estimator__max_features': [0.5, 1, "log2"]
+        'clf__estimator__n_estimators':[50, 100],
+        'clf__estimator__min_samples_leaf':[2, 5, 7],
+        'clf__estimator__max_features': [0.5, 1, "log2"]
     }
     cv = GridSearchCV(pipeline, param_grid=parameters)
     return cv
@@ -88,7 +100,7 @@ def main():
         print('Please provide the filepath of the disaster messages database '\
               'as the first argument and the filepath of the pickle file to '\
               'save the model to as the second argument. \n\nExample: python '\
-              'train_classifier.py ../data/DisasterResponse.db classifier.pkl')
+              'train_classifier.py ../data/Disaster.db classifier.pkl')
 
 
 if __name__ == '__main__':
