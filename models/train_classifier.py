@@ -18,7 +18,10 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 
 def load_data(database_filepath):
-    #engine = create_engine(database_filepath)
+    """
+    INPUT: path to store database
+    OUTPUT: data to be trained with labels and category names
+    """
     engine = create_engine('sqlite:///{}'.format(database_filepath))
     df = pd.read_sql_table('messages', engine)
     category_names = df.columns[4:]
@@ -50,6 +53,10 @@ def tokenize(text):
     return clean_tokens
 
 def build_model():
+    """
+    INPUT: none
+    OUTPUT: GridSearch pipeline to test for best parameters
+    """
     pipeline = Pipeline(
         [
             ('vect', CountVectorizer(tokenizer=tokenize)),
@@ -59,18 +66,26 @@ def build_model():
     )
     parameters = {
         'clf__estimator__n_estimators':[50, 100],
-        'clf__estimator__min_samples_leaf':[2, 5, 7],
+        'clf__estimator__min_samples_leaf':[1, 2],
         'clf__estimator__max_features': [0.5, 1, "log2"]
     }
     cv = GridSearchCV(pipeline, param_grid=parameters)
     return cv
 
 def evaluate_model(model, X_test, y_test, category_names):
+    """
+    INPUT: 
+    OUTPUT: 
+    """
     y_pred = model.predict(X_test)
     return print(classification_report(y_test, y_pred,target_names=category_names))
 
 
 def save_model(model, model_filepath):
+    """
+    INPUT: a fit model, a path to store the model
+    OUTPUT: pickles and dumps the model to the file location
+    """
     with open(model_filepath, 'wb') as model_file:
         pickle.dump(model, model_file)
 
