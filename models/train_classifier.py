@@ -76,8 +76,8 @@ def build_model():
 
 def evaluate_model(model, X_test, y_test, category_names):
     """
-    INPUT: 
-    OUTPUT: 
+    INPUT: the model, the test data, and the category names from the data
+    OUTPUT: prints a classification report using predicted classes
     """
     y_pred = model.predict(X_test)
     return print(classification_report(y_test, y_pred,target_names=category_names))
