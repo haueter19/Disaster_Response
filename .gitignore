@@ -2,3 +2,4 @@ models/classifier.pkl
 EDA.ipynb
 .ipynb_checkpoints
 .pyc
+.pkl
