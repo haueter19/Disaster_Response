@@ -39,3 +39,5 @@ project
 |  |  train_classifier.pkl
 ```
 
+### Improvements
+The training dataset is imbalanced. Some categories have very few positive instances whereas other categories have few negative instances. In order to better handle this imbalance, further work needs to be done. A better model result may be achieved by applying weights to the data using the <code>class_weight</code> argument of the RandomForestClassifier class. 
