@@ -13,37 +13,22 @@ from flask import render_template, request, jsonify
 from plotly.graph_objs import *
 #from sklearn.externals import joblib
 import joblib
+import pickle
 from sqlalchemy import create_engine
 
+import sys
+sys.path.append('..')
+from models import train_classifier
+from models.train_classifier import tokenize
 
 app = Flask(__name__)
-
-def tokenize(text):
-    """
-    INPUT: text string
-    OUTPUT: cleaned, tokenized, lemmatized list in lowercase with punctuation and stop words removed
-    """
-    tokens = word_tokenize(text)
-    lemmatizer = WordNetLemmatizer()
-
-    clean_tokens = []
-    for token in tokens:
-        clean_token = lemmatizer.lemmatize(token).lower().strip()
-        if re.match(r'[^\w]', clean_token)==None:
-            if clean_token not in stop_words:
-                clean_tokens.append(clean_token)
-            else:
-                pass
-        else:
-            pass
-
-    return clean_tokens
 
 # load data
 engine = create_engine('sqlite:///../data/Disaster.db')
 df = pd.read_sql_table('messages', engine)
 
 # load model
+#model = pickle.load("../models/classifier2.pkl")
 model = joblib.load("../models/classifier.pkl")
 
 

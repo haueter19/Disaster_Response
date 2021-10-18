@@ -1,4 +1,5 @@
 import sys
+import datetime
 import pandas as pd
 from sqlalchemy import create_engine
 import nltk
@@ -9,6 +10,7 @@ from nltk.corpus import stopwords
 stop_words = set(stopwords.words('english'))
 import re
 import pickle
+import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 from sklearn.multioutput import MultiOutputClassifier
@@ -65,9 +67,9 @@ def build_model():
         ]
     )
     parameters = {
-        'clf__estimator__n_estimators':[50, 100],
-        'clf__estimator__min_samples_leaf':[1, 2],
-        'clf__estimator__max_features': [0.5, 1, "log2"]
+        'clf__estimator__n_estimators':[80, 120],
+        #'clf__estimator__min_samples_leaf':[1, 2],
+        #'clf__estimator__max_features': [0.5, 1, "log2"]
     }
     cv = GridSearchCV(pipeline, param_grid=parameters)
     return cv
@@ -86,8 +88,7 @@ def save_model(model, model_filepath):
     INPUT: a fit model, a path to store the model
     OUTPUT: pickles and dumps the model to the file location
     """
-    with open(model_filepath, 'wb') as model_file:
-        pickle.dump(model, model_file)
+    joblib.dump(model, model_filepath, compress=3)
 
 
 def main():
@@ -98,15 +99,19 @@ def main():
         X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2)
         
         print('Building model...')
+        print(datetime.datetime.now())
         model = build_model()
         
         print('Training model...')
+        print(datetime.datetime.now())
         model.fit(X_train, y_train)
         
         print('Evaluating model...')
+        print(datetime.datetime.now())
         evaluate_model(model, X_test, y_test, category_names)
 
         print('Saving model...\n    MODEL: {}'.format(model_filepath))
+        print(datetime.datetime.now())
         save_model(model, model_filepath)
 
         print('Trained model saved!')

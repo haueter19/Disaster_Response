@@ -2,6 +2,10 @@ import sys
 import pandas as pd
 
 def load_data(messages_filepath, categories_filepath):
+    """
+    INPUT: paths to both csv files containing the data
+    OUTPUT: read the csv and merge on the id field, output a dataframe
+    """
     messages = pd.read_csv(messages_filepath)
     categories = pd.read_csv(categories_filepath)
     df = messages.merge(categories, on='id', how='inner')
@@ -10,6 +14,10 @@ def load_data(messages_filepath, categories_filepath):
 
 
 def clean_data(df):
+    """
+    INPUT: dataframe in need of cleaning
+    OUTPUT: cleans data to return the id, message, and 36 message category fields in usable format
+    """
     categories = df.categories.str.split(';', expand=True)
     row = categories.iloc[0]
     category_colnames = row.apply(lambda x: x[:-2])
@@ -26,6 +34,10 @@ def clean_data(df):
 
 
 def save_data(df, database_filename):
+    """
+    INPUT: cleaned dataframe and name for the new db
+    OUTPUT: function will save df as sqlite db with provided name
+    """
     from sqlalchemy import create_engine
     engine = create_engine('sqlite:///'+database_filename)
     df.to_sql('messages', engine, index=False)
