@@ -28,6 +28,7 @@ def clean_data(df):
         # convert column from string to numeric
         categories[column] = categories[column].astype(int)
     df.drop(columns='categories',inplace=True)
+    df['related'] = df['related'].apply(lambda x: 1 if x==2 else x)
     df = pd.concat([df, categories], axis=1)
     df = df.drop_duplicates()
     return df
@@ -40,7 +41,7 @@ def save_data(df, database_filename):
     """
     from sqlalchemy import create_engine
     engine = create_engine('sqlite:///'+database_filename)
-    df.to_sql('messages', engine, index=False)
+    df.to_sql('messages', engine, index=False, if_exists='replace')
 
 
 
